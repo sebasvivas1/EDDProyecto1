@@ -87,6 +87,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         jLabel2.setText("Datos:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, -1, -1));
 
+        jTextArea1.setBackground(new java.awt.Color(204, 204, 204));
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
@@ -114,7 +115,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 350, 80));
 
         exitButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        exitButton.setForeground(new java.awt.Color(0, 0, 0));
+        exitButton.setForeground(new java.awt.Color(255, 255, 255));
         exitButton.setText("x");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

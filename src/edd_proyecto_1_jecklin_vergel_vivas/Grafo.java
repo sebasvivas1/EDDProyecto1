@@ -31,7 +31,7 @@ public class Grafo {
         }
     }
 
-    //PRIMITIVAS
+        //PRIMITIVAS
     /**
      * Inserta una arista dada la relacion entre vertice1 y vertice2 y la
      * distancia entre los vertices dados

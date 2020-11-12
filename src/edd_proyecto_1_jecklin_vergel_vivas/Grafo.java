@@ -20,8 +20,8 @@ public class Grafo {
 
     //Contructor 
     public Grafo() {
-        this.max_aristas = 40;
-        this.max_vertices = 20; //Restriccion 
+        this.max_aristas = 30;
+        this.max_vertices = 10; //Restriccion 
         this.aristas = 0;
         this.matrix = new int[max_vertices][max_vertices]; // Se crea una matriz solo de 0
         for (int i = 0; i < max_vertices; i++) {
@@ -44,6 +44,7 @@ public class Grafo {
         if (verticesValidos(vertice1, vertice2)) {
             if (aristas != max_aristas) {
                 matrix[vertice1][vertice2] = dist;
+                aristas++;
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR: NUMERO DE ARISTAS MAXIMAS ALCANZADO");
             }

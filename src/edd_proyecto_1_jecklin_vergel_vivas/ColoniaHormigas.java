@@ -2,11 +2,11 @@ package edd_proyecto_1_jecklin_vergel_vivas;
 
 public class ColoniaHormigas {
 
-    public double[][] InicializarFeromonas(double[][] visibilidad, int n, double p) { // Aca borrar la visibilidad, lo puse para que no saltara error.
+    public double[][] InicializarFeromonas(int n) {
         double[][] Feromonas = new double[n][n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                Feromonas[i][j] = visibilidad[i][j]; //Esto es lo que hay que terminar
+                Feromonas[i][j] = 1 / n;
             }
         }
         return Feromonas;
@@ -27,15 +27,23 @@ public class ColoniaHormigas {
         return visibilidad;
     }
 
-    public double[][] probabilidadPorCamino(int n, double[][] feromonas, double[][] visibilidad) {
+    public double[][] probabilidadPorCamino(int n, double[][] feromonas, double[][] visibilidad, int alpha, int beta) {
         double[][] probabilidadPorCamino = new double[n][n];
         double suma = 0;
-        int alpha = 1;
-        int betta = 2;
+
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (i != j) {
-                    double aux = (double) (Math.pow(feromonas[i][j], alpha) * (Math.pow(visibilidad[i][j], betta))); // El usuario podrá modificar alpha y betta.
+                    
+                    // Aca se evalua que el parámetro Alpha y Betta pasado por el usuario no sea un número negativo. 
+                    //Si es negativo entonces se asigna el valor predeterminado.
+                    if (alpha > 0) { 
+                        alpha = 2;
+                    }
+                    if (beta > 0) {
+                        beta = 1;
+                    }
+                    double aux = (double) (Math.pow(feromonas[i][j], alpha) * (Math.pow(visibilidad[i][j], beta))); // El usuario podrá modificar alpha y betta.
                     probabilidadPorCamino[i][j] = aux;
                     suma = aux + suma;
                 }

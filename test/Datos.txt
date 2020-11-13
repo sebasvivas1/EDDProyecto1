@@ -1,0 +1,6 @@
+Ciudades
+Maracaibo,0
+Caracas,1
+Valencia,2
+San Cristobal,3
+Rutas

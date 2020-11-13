@@ -10,6 +10,7 @@ package edd_proyecto_1_jecklin_vergel_vivas;
  * @author Edward Vergel
  */
 public class Hormiga {
+
     private String nombre;
     private double recorrido;
     private int posicion;
@@ -21,8 +22,8 @@ public class Hormiga {
     public void setPosicion(int posicion) {
         this.posicion = posicion;
     }
-    
-    public Hormiga(int n){
+
+    public Hormiga(int n) {
         this.nombre = "h" + n;
         this.recorrido = 0;
         this.posicion = posicion;
@@ -43,5 +44,5 @@ public class Hormiga {
     public void setRecorrido(double recorrido) {
         this.recorrido = recorrido;
     }
-    
+
 }

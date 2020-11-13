@@ -29,6 +29,20 @@ public class ListaCiudades {
         }
     }
     
+    public Ciudad obtenerCiudadIndex(int index){
+        Ciudad pAux = pFirst;
+        if (!esVacio()){
+            if(index <= 19 || index >= 0){
+                while(pAux.getIndex() != index){
+                    pAux = pAux.getpNext();
+                }
+                return pAux;
+            }
+            JOptionPane.showMessageDialog(null, "ERROR: INDICE INVALIDO");
+        }
+        return null;
+    }
+    
 //    public void eliminarIndice(int index){
 //        Ciudad pAnt = pFirst;
 //        Ciudad pAct = pFirst.getpNext();

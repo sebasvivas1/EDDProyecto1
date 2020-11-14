@@ -4,9 +4,16 @@ package edd_proyecto_1_jecklin_vergel_vivas;
 public class Hormiga {
 
     private String nombre;
-    double recorrido;
+    double fitness;
     private int posicion;
     Recorrido camino;
+    
+    
+    public Hormiga(int n) {
+        this.nombre = "h" + n;
+        this.fitness = 0;
+        this.posicion = posicion;
+    }
 
     public Recorrido getCamino() {
         return camino;
@@ -24,12 +31,6 @@ public class Hormiga {
         this.posicion = posicion;
     }
 
-    public Hormiga(int n) {
-        this.nombre = "h" + n;
-        this.recorrido = 0;
-        this.posicion = posicion;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -38,12 +39,12 @@ public class Hormiga {
         this.nombre = nombre;
     }
 
-    public double getRecorrido() {
-        return recorrido;
+    public double getFitness() {
+        return fitness;
     }
 
-    public void setRecorrido(double recorrido) {
-        this.recorrido = recorrido;
+    public void setFitness(double fitness) {
+        this.fitness = fitness;
     }
 
 }

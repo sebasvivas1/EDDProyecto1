@@ -12,7 +12,7 @@ public class Funciones {
     public String[] cargarDatos() {
         String linea;
         String txt = "";
-//        String path = "test\\Datos.txt";
+        String path = "test\\Datos.txt";
         File file = new File(path);
         try {
             if (!file.exists()) {

@@ -9,13 +9,16 @@ public class Ciudad {
     private String nombre;
     //private String id; ----> id = index (NO ES NECESARIO ID YA QUE EL INDEX ES LO MISMO PERO INT)
     private int index; //Para poder eliminar por endice en la lista
+    private boolean visitado;
   
     public Ciudad(String nombre , int index){
         this.pNext = null;
         this.nombre = nombre;
         this.index = index;
+        this.visitado = false;
     }
-
+    
+    
     public Ciudad getpNext() {
         return pNext;
     }
@@ -38,6 +41,14 @@ public class Ciudad {
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public boolean isVisitado() {
+        return visitado;
+    }
+
+    public void setVisitado(boolean visitado) {
+        this.visitado = visitado;
     }
     
 }

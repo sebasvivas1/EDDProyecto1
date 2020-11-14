@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 public class EDD_Proyecto_1_Jecklin_Vergel_Vivas {
         
     public static void main(String[] args) {
+        double[][] probando;
         Funciones f = new Funciones();
         String[] list = f.cargarDatos();
         ListaCiudades ciudades = f.obtenerCiudades(list);
@@ -18,5 +19,10 @@ public class EDD_Proyecto_1_Jecklin_Vergel_Vivas {
             } 
             System.out.println();    // Imprime salto de línea 
         }
+        
+        ColoniaHormigas probarVisibilidad = new ColoniaHormigas();
+        
+        
+        
     }
 }

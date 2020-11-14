@@ -6,14 +6,20 @@ import javax.swing.JOptionPane;
 public class EDD_Proyecto_1_Jecklin_Vergel_Vivas {
 
     public static void main(String[] args) {
+        double[][] probando;
         Funciones f = new Funciones();
+<<<<<<< HEAD
         ColoniaHormigas colonia = new ColoniaHormigas();
         NumerosAleatorios numeros = new NumerosAleatorios(1, 5);
+=======
+        ColoniaHormigas ch = new ColoniaHormigas();
+>>>>>>> 72264a248ad26a6ba82cac859a74bc19c041a29d
         String[] list = f.cargarDatos();
         ListaCiudades ciudades = f.obtenerCiudades(list);
-        ciudades.listar();
+        //ciudades.listar();
         f.invertirArreglo(list);
         double[][] m = f.obtenerCosto(list, 4);
+<<<<<<< HEAD
         for (int i = 0; i < m.length; i++) {
             for (int j = 0; j < m[i].length; j++) {
                 System.out.print(m[i][j] + " ");    // Imprime elemento 
@@ -43,5 +49,42 @@ public class EDD_Proyecto_1_Jecklin_Vergel_Vivas {
             // Incrementa el contador de la posión.
             i++;
         }
+=======
+//        for(int i = 0; i < m.length; i++){ 
+//            for(int j = 0; j < m[i].length; j++){ 
+//                System.out.print(m[i][j] + " ");    // Imprime elemento 
+//            } 
+//            System.out.println();    // Imprime salto de línea 
+//        }
+        double k[][]= ch.InicializarFeromonas(4);
+        double h[][]= ch.InicializarVisibilidad(m, 4);
+        
+        double g[][] = ch.probabilidadPorCamino(4, m, h, 1, 2);
+        
+                for(int i = 0; i < g.length; i++){ 
+            for(int j = 0; j < g[i].length; j++){ 
+                System.out.print(g[i][j] + " ");    // Imprime elemento 
+            } 
+            System.out.println();    // Imprime salto de línea 
+        }
+        
+        ColoniaHormigas probarVisibilidad = new ColoniaHormigas();
+        
+        
+     
+            
+            Recorrido r = new Recorrido();
+            
+            r.insertarAlFinal(1);
+            r.insertarAlFinal(2);
+            r.insertarAlFinal(3);
+            
+            
+            System.out.println(r.getTamanio());
+            System.out.println(r.getpLast().getValor());
+            System.out.println(r.enRecorrido(7));
+            
+>>>>>>> 72264a248ad26a6ba82cac859a74bc19c041a29d
     }
 }
+

@@ -58,16 +58,10 @@ public class ListaNumeros {
         return true;
     }
 
-    /**
-     * @return the pFirst
-     */
     public Numero getpFirst() {
         return pFirst;
     }
 
-    /**
-     * @param pFirst the pFirst to set
-     */
     public void setpFirst(Numero pFirst) {
         this.pFirst = pFirst;
     }

@@ -12,10 +12,20 @@ package edd_proyecto_1_jecklin_vergel_vivas;
 public class nodoRecorrido {
     private nodoRecorrido pNext;
     private int valor;
+    private int index;
     
-    public nodoRecorrido(int valor){
+    public nodoRecorrido(int valor, int index){
         this.pNext = null;
         this.valor = valor;
+        this.index = index;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public nodoRecorrido getpNext() {

@@ -5,6 +5,8 @@
  */
 package edd_proyecto_1_jecklin_vergel_vivas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Edward Vergel
@@ -23,12 +25,13 @@ public class Recorrido {
 
     public void insertarAlFinal(int valor) {
         nodoRecorrido pAux;
+        int index = tamanio;
         if (esVacio()) {
-            nodoRecorrido pNew = new nodoRecorrido(valor);
+            nodoRecorrido pNew = new nodoRecorrido(valor, index);
             pFirst = pLast = pNew;
             tamanio++;
         } else {
-            nodoRecorrido pNew = new nodoRecorrido(valor);
+            nodoRecorrido pNew = new nodoRecorrido(valor, index);
             pLast.setpNext(pNew);
             pLast = pNew;
             tamanio++;
@@ -47,6 +50,20 @@ public class Recorrido {
             return true;
         }
         return false;
+    }
+    
+     public nodoRecorrido obtenerRecorridoIndex(int index) {
+        nodoRecorrido pAux = pFirst;
+        if (!esVacio()) {
+            if (index <= 400 || index >= 0) {
+                while (pAux.getIndex() != index) {
+                    pAux = pAux.getpNext();
+                }
+                return pAux;
+            }
+            JOptionPane.showMessageDialog(null, "ERROR: INDICE INVALIDO");
+        }
+        return null;
     }
 
     public boolean esVacio() {

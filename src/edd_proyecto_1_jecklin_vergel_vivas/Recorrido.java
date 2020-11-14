@@ -33,7 +33,20 @@ public class Recorrido {
             pLast = pNew;
             tamanio++;
         }
-    }   
+    }
+    public boolean enRecorrido(int numero){
+        nodoRecorrido pAux = pFirst;
+        if (!esVacio()){
+            while(pAux.getValor() != numero){
+                if (pAux == pLast){
+                    return false;
+                } 
+                pAux = pAux.getpNext();
+            }
+            return true;
+        }
+        return false;
+    }
     public boolean esVacio(){
         return tamanio == 0;
     }

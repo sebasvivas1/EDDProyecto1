@@ -112,15 +112,13 @@ public class ColoniaHormigas {
     }
 
     public Hormiga crearHormiga(Random rand, int n) {
-        NumerosAleatorios aleatorios = new NumerosAleatorios(1, n - 1);
+        NumerosAleatorios aleatorios = new NumerosAleatorios(1, n);
         Hormiga hormiga = new Hormiga(String.valueOf(n));
-        // hormiga.getCamino().add(0);
-        hormiga.camino.insertarAlFinal(0);
-
-        for (int i = 1; i < n; i++) {
-            int aux = aleatorios.generarNumeroAleatorio(rand);
-            // hormiga.getCamino().add(i, aux);
-            hormiga.camino.insertarAlFinal(aux);
+        hormiga.getCamino().insertarAlFinal(0);
+        aleatorios.generarNumeroAleatorio(rand);
+        ListaNumeros aux = aleatorios.getListaNumeros();
+        for (int i = 0; i < aux.getTamanio(); i++) {
+            hormiga.getCamino().insertarAlFinal(aux.obtenerValor(i));
         }
         return hormiga;
     }

@@ -17,18 +17,18 @@ public class NumerosAleatorios {
 
     }
 
-    private int numeroAleatorio(Random rand) {
+    public int numeroAleatorio(Random rand) {
         int r = (int) (rand.nextDouble() * (getValorFinal() - getValorInicial() + 1) + getValorInicial());
         return r;
     }
 
-    public void generarNumeroAleatorio(Random rand) {
+    public void generarNumeroAleatorio(Random rand ) {
         for (int i = 0; i < this.getValorFinal()-1 ; i++) {
             int numero = numeroAleatorio(rand);
+            System.out.println(numero);
             if (this.getListaNumeros().esVacio() == true) {
                 this.getListaNumeros().insertarAlFinal(numero);
-            }
-            else{
+            }else{
                 if (this.getListaNumeros().existeNumero(numero, this.getListaNumeros()) == false) {
                     this.getListaNumeros().insertarAlFinal(numero);
                 }

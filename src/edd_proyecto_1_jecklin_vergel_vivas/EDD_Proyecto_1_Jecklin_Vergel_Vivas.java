@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 public class EDD_Proyecto_1_Jecklin_Vergel_Vivas {
 
     public static void main(String[] args) {
+<<<<<<< HEAD
         double[][] probando;
         Funciones f = new Funciones();
         ColoniaHormigas colonia = new ColoniaHormigas();
@@ -77,5 +78,9 @@ public class EDD_Proyecto_1_Jecklin_Vergel_Vivas {
         System.out.println(r.getpLast().getValor());
         System.out.println(r.enRecorrido(7));
 
+=======
+        
+            
+>>>>>>> 0c9c8bcdda541cc139b8f5cbb7fa2ee00d970913
     }
 }

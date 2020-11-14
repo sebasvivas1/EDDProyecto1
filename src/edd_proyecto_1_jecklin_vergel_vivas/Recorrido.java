@@ -10,44 +10,46 @@ package edd_proyecto_1_jecklin_vergel_vivas;
  * @author Edward Vergel
  */
 public class Recorrido {
+
     private nodoRecorrido pFirst;
     private nodoRecorrido pLast;
     private int tamanio;
-    
-    
-    public Recorrido(){
+
+    public Recorrido() {
         this.pFirst = null;
         this.pLast = null;
         this.tamanio = 0;
     }
-    
-    public void insertarAlFinal(int valor){
+
+    public void insertarAlFinal(int valor) {
         nodoRecorrido pAux;
-        if (esVacio()){
-            nodoRecorrido pNew = new nodoRecorrido (valor);
+        if (esVacio()) {
+            nodoRecorrido pNew = new nodoRecorrido(valor);
             pFirst = pLast = pNew;
-            tamanio ++;
-        }else {
-            nodoRecorrido pNew = new nodoRecorrido (valor);
+            tamanio++;
+        } else {
+            nodoRecorrido pNew = new nodoRecorrido(valor);
             pLast.setpNext(pNew);
             pLast = pNew;
             tamanio++;
         }
     }
-    public boolean enRecorrido(int numero){
+
+    public boolean enRecorrido(int numero) {
         nodoRecorrido pAux = pFirst;
-        if (!esVacio()){
-            while(pAux.getValor() != numero){
-                if (pAux == pLast){
+        if (!esVacio()) {
+            while (pAux.getValor() != numero) {
+                if (pAux == pLast) {
                     return false;
-                } 
+                }
                 pAux = pAux.getpNext();
             }
             return true;
         }
         return false;
     }
-    public boolean esVacio(){
+
+    public boolean esVacio() {
         return tamanio == 0;
     }
 
@@ -74,6 +76,5 @@ public class Recorrido {
     public void setTamanio(int tamanio) {
         this.tamanio = tamanio;
     }
-    
-    
+
 }

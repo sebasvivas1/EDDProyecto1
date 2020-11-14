@@ -10,6 +10,15 @@ public class Ciudad {
     //private String id; ----> id = index (NO ES NECESARIO ID YA QUE EL INDEX ES LO MISMO PERO INT)
     private int index; //Para poder eliminar por endice en la lista
     private boolean visitado;
+    double probabilidad;
+
+    public double getProbabilidad() {
+        return probabilidad;
+    }
+
+    public void setProbabilidad(double probabilidad) {
+        this.probabilidad = probabilidad;
+    }
   
     public Ciudad(String nombre , int index){
         this.pNext = null;

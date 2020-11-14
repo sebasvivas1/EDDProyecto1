@@ -1,39 +1,39 @@
-
 package edd_proyecto_1_jecklin_vergel_vivas;
 
 import javax.swing.JOptionPane;
 
 public class ListaCiudades {
+
     private Ciudad pFirst;
     private Ciudad pLast;
     private int tamanio;
-    
-    public ListaCiudades(){
+
+    public ListaCiudades() {
         this.pFirst = null;
         this.pLast = null;
         this.tamanio = 0;
     }
-    
-    public void insertarAlFinal(String nombre){
+
+    public void insertarAlFinal(String nombre) {
         Ciudad pAux;
         int index = tamanio;
-        if (esVacio()){
-            Ciudad pNew = new Ciudad (nombre, index);
+        if (esVacio()) {
+            Ciudad pNew = new Ciudad(nombre, index);
             pFirst = pLast = pNew;
-            tamanio ++;
-        }else {
-            Ciudad pNew = new Ciudad (nombre, index);
+            tamanio++;
+        } else {
+            Ciudad pNew = new Ciudad(nombre, index);
             pLast.setpNext(pNew);
             pLast = pNew;
             tamanio++;
         }
     }
-    
-    public Ciudad obtenerCiudadIndex(int index){
+
+    public Ciudad obtenerCiudadIndex(int index) {
         Ciudad pAux = pFirst;
-        if (!esVacio()){
-            if(index <= 19 || index >= 0){
-                while(pAux.getIndex() != index){
+        if (!esVacio()) {
+            if (index <= 19 || index >= 0) {
+                while (pAux.getIndex() != index) {
                     pAux = pAux.getpNext();
                 }
                 return pAux;
@@ -42,7 +42,7 @@ public class ListaCiudades {
         }
         return null;
     }
-    
+
 //    public void eliminarIndice(int index){
 //        Ciudad pAnt = pFirst;
 //        Ciudad pAct = pFirst.getpNext();
@@ -59,10 +59,7 @@ public class ListaCiudades {
 //            JOptionPane.showMessageDialog(null, "ERROR: NO HAY CIUDADES INSERTADAS");
 //        }
 //    }
-    
-    
-    
-    public boolean esVacio(){
+    public boolean esVacio() {
         return tamanio == 0;
     }
 
@@ -89,12 +86,12 @@ public class ListaCiudades {
     public void setTamanio(int tamanio) {
         this.tamanio = tamanio;
     }
-    
-    public boolean esVacia(){
+
+    public boolean esVacia() {
         return pFirst == null;
     }
-    
-    public void listar(){
+
+    public void listar() {
         // Verifica si la lista contiene elementoa.
         if (!esVacia()) {
             // Crea una copia de la lista.
@@ -102,7 +99,7 @@ public class ListaCiudades {
             // Posicion de los elementos de la lista.
             int i = 0;
             // Recorre la lista hasta el final.
-            while(aux != null){
+            while (aux != null) {
                 // Imprime en pantalla el valor del nodo.
                 System.out.print(i + ".[ " + aux.getNombre() + " ]" + "\n");
                 // Avanza al siguiente nodo.

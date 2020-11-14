@@ -14,10 +14,9 @@ public class Hormiga {
     private String nombre;
     double fitness;
     private int posicion;
-    Recorrido camino;
-    
-    
-    public Hormiga(int n) {
+    Recorrido camino = new Recorrido();
+
+    public Hormiga(String n) {
         this.nombre = "h" + n;
         this.fitness = 0;
         this.posicion = posicion;

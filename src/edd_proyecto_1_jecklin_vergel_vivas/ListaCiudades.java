@@ -90,5 +90,26 @@ public class ListaCiudades {
         this.tamanio = tamanio;
     }
     
+    public boolean esVacia(){
+        return pFirst == null;
+    }
     
+    public void listar(){
+        // Verifica si la lista contiene elementoa.
+        if (!esVacia()) {
+            // Crea una copia de la lista.
+            Ciudad aux = pFirst;
+            // Posicion de los elementos de la lista.
+            int i = 0;
+            // Recorre la lista hasta el final.
+            while(aux != null){
+                // Imprime en pantalla el valor del nodo.
+                System.out.print(i + ".[ " + aux.getNombre() + " ]" + "\n");
+                // Avanza al siguiente nodo.
+                aux = aux.getpNext();
+                // Incrementa el contador de la posión.
+                i++;
+            }
+        }
+    }
 }

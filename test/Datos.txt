@@ -1,6 +1,18 @@
-Ciudades
+ciudades
 Maracaibo,0
 Caracas,1
 Valencia,2
-San Cristobal,3
-Rutas
+Cristobal,3
+rutas
+0,1,30
+0,2,25
+0,3,40
+1,0,30
+1,2,5
+1,3,15
+2,0,25
+2,1,5
+2,3,10
+3,0,40
+3,1,15
+3,2,10

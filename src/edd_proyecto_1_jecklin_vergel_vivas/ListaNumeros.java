@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package edd_proyecto_1_jecklin_vergel_vivas;
 
-/**
- *
- * @author sebastian
- */
 public class ListaNumeros {
 
     private Numero pFirst;
@@ -38,11 +30,11 @@ public class ListaNumeros {
         int index = tamanio;
         if (esVacio()) {
             Numero pNew = new Numero(n, index);
-            pFirst = pLast = pNew;
+            setpFirst(pLast = pNew);
             tamanio++;
         } else {
             Numero pNew = new Numero(n, index);
-            pLast.setpNext(pNew);
+            getpLast().setpNext(pNew);
             pLast = pNew;
             tamanio++;
         }
@@ -53,10 +45,10 @@ public class ListaNumeros {
     }
 
     public boolean existeNumero(int numero, ListaNumeros lista) {
-        Numero pAux = pFirst;
+        Numero pAux = getpFirst();
         if (!lista.esVacio()) {
             while (pAux.getNumero() != numero) {
-                if (pAux == pLast) {
+                if (pAux == getpLast()) {
                     return false;
                 }
                 pAux = pAux.pNext;
@@ -64,6 +56,34 @@ public class ListaNumeros {
         }
 
         return true;
+    }
+
+    /**
+     * @return the pFirst
+     */
+    public Numero getpFirst() {
+        return pFirst;
+    }
+
+    /**
+     * @param pFirst the pFirst to set
+     */
+    public void setpFirst(Numero pFirst) {
+        this.pFirst = pFirst;
+    }
+
+    /**
+     * @return the pLast
+     */
+    public Numero getpLast() {
+        return pLast;
+    }
+
+    /**
+     * @param tamanio the tamanio to set
+     */
+    public void setTamanio(int tamanio) {
+        this.tamanio = tamanio;
     }
 
 }

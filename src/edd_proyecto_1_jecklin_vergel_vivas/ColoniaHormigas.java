@@ -63,9 +63,9 @@ public class ColoniaHormigas {
         return probabilidadPorCamino;
     }
 
-    public boolean Esta(int origen, int destino, ListaCaminos camino) {
+    /*public boolean Esta(int origen, int destino, Recorrido camino) {
         int aux;
-        for (int i = 0; i < camino.getTamanio; i++) {
+        for (int i = 0; i < camino.getTamanio(); i++) {
             if (origen == camino.buscar(i)) {
 
                 aux = i + 1;
@@ -77,9 +77,9 @@ public class ColoniaHormigas {
             }
         }
         return false;
-    }
+    }*/
 
-    public double[][] ActualizarFeromonas(Hormiga hormiga, double[][] feromonas, int n, double evaporacion) {
+    /*public double[][] ActualizarFeromonas(Hormiga hormiga, double[][] feromonas, int n, double evaporacion) {
         double sumaFeromonas = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -106,9 +106,9 @@ public class ColoniaHormigas {
         }
 
         return feromonas;
-    }
+    }*/
 
-    public Hormiga crearHormiga(Random rand, int n) {
+    /*public Hormiga crearHormiga(Random rand, int n) {
         NumerosAleatorios aleatorios = new NumerosAleatorios(1, n - 1);
         Hormiga hormiga = new Hormiga(n);
         // hormiga.getCamino().add(0);
@@ -120,6 +120,6 @@ public class ColoniaHormigas {
             hormiga.InsertarAlFinal(i, aux);
         }
         return hormiga;
-    }
+    }*/
 
 }

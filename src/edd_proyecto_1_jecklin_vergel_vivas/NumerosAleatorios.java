@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edd_proyecto_1_jecklin_vergel_vivas;
 
 import java.util.Random;
 
-/**
- *
- * @author sebastian
- */
 public class NumerosAleatorios {
 
     private int valorInicial;
@@ -23,29 +14,48 @@ public class NumerosAleatorios {
 
     }
 
-    private int numeroAleatorio(Random rand) {
-        int r = (int) (rand.nextDouble() * (valorFinal - valorInicial + 1) + valorInicial);
+    public int numeroAleatorio(Random rand) {
+        int r = (int) (rand.nextDouble() * (getValorFinal() - getValorInicial() + 1) + getValorInicial());
         return r;
     }
 
-    public int generarNumeroAleatorio(Random rand) {
-
-        if (listaNumeros.getTamanio() < (valorFinal - valorInicial) + 1) {
-
+    public void generarNumeroAleatorio(Random rand) {
+        for (int i = 0; i < this.getValorFinal()-1; i++) {
             int numero = numeroAleatorio(rand);
-            if (listaNumeros.esVacio()) {
-                listaNumeros.insertarAlFinal(numero);
-                return numero;
+            if (this.getListaNumeros().esVacio() == true) {
+                this.getListaNumeros().insertarAlFinal(numero);
             } else {
-                if (listaNumeros.existeNumero(numero, listaNumeros)) {
-                    return generarNumeroAleatorio(rand);
-                } else {
-                    listaNumeros.insertarAlFinal(numero);
-                    return numero;
+                if (this.getListaNumeros().existeNumero(numero, this.getListaNumeros()) == false)  {
+                    this.getListaNumeros().insertarAlFinal(numero);
+                }
+                else{
+                    i--;
                 }
             }
-        } else {
-            return -1;
         }
+    }
+
+    public int getValorInicial() {
+        return valorInicial;
+    }
+
+    public void setValorInicial(int valorInicial) {
+        this.valorInicial = valorInicial;
+    }
+
+    public int getValorFinal() {
+        return valorFinal;
+    }
+
+    public void setValorFinal(int valorFinal) {
+        this.valorFinal = valorFinal;
+    }
+
+    public ListaNumeros getListaNumeros() {
+        return listaNumeros;
+    }
+
+    public void setListaNumeros(ListaNumeros listaNumeros) {
+        this.listaNumeros = listaNumeros;
     }
 }

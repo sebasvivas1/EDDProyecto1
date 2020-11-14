@@ -25,7 +25,6 @@ public class NumerosAleatorios {
     public void generarNumeroAleatorio(Random rand ) {
         for (int i = 0; i < this.getValorFinal()-1 ; i++) {
             int numero = numeroAleatorio(rand);
-            System.out.println(numero);
             if (this.getListaNumeros().esVacio() == true) {
                 this.getListaNumeros().insertarAlFinal(numero);
             }else{

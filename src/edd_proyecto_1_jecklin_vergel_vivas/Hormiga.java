@@ -12,7 +12,7 @@ package edd_proyecto_1_jecklin_vergel_vivas;
 public class Hormiga {
 
     private String nombre;
-    double fitness;
+    private double fitness;
     private int posicion;
     Recorrido camino = new Recorrido();
 

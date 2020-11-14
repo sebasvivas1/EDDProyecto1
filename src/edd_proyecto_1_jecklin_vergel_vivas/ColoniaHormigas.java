@@ -8,7 +8,7 @@ public class ColoniaHormigas {
         double[][] Feromonas = new double[n][n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                Feromonas[i][j] = (double)1/n;
+                Feromonas[i][j] = (double) 1 / n;
             }
         }
         return Feromonas;
@@ -46,8 +46,8 @@ public class ColoniaHormigas {
                         beta = 2;
                     }
                     double aux = (double) (Math.pow(feromonas[i][j], alpha) * (Math.pow(visibilidad[i][j], beta))); // El usuario podrá modificar alpha y beta.
-                    probabilidadPorCamino[i][j] = (double)aux;
-                    suma = (double)aux + suma;
+                    probabilidadPorCamino[i][j] = (double) aux;
+                    suma = (double) aux + suma;
                 }
             }
         }
@@ -55,7 +55,7 @@ public class ColoniaHormigas {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (i != j) {
-                    probabilidadPorCamino[i][j] = (double)probabilidadPorCamino[i][j] / suma;
+                    probabilidadPorCamino[i][j] = (double) probabilidadPorCamino[i][j] / suma;
                 }
             }
         }
@@ -63,63 +63,67 @@ public class ColoniaHormigas {
         return probabilidadPorCamino;
     }
 
-//    public boolean Esta(int origen, int destino, Recorrido camino) {
-//        int aux;
-//        for (int i = 0; i < camino.getTamanio(); i++) {
-//            if (origen == camino.buscar(i)) {
-//
-//                aux = i + 1;
-//                if (destino == camino.buscar(aux)) {
-//                    return true;
-//                } else {
-//                    return false;
-//                }
-//            }
-//        }
-//        return false;
-//    }
+    public boolean Esta(int origen, int destino, Recorrido camino) {
+        int aux;
+        for (int i = 0; i < camino.getTamanio(); i++) {
+            // if (origen == camino.buscar(i)) {
 
-//    public double[][] ActualizarFeromonas(Hormiga hormiga, double[][] feromonas, int n, double evaporacion) {
-//        double sumaFeromonas = 0;
-//        for (int i = 0; i < n; i++) {
-//            for (int j = 0; j < n; j++) {
-//                sumaFeromonas = feromonas[i][j] + sumaFeromonas;
-//            }
-//        }
-//
-//        int o = 0;
-//        while (o < n) {
-//            int d = 1;
-//            while (d < n) {
-//                if (o != d) {
-//                    if (Esta(o, d, hormiga.getRecorrido()) == true) {
-//                        feromonas[o][d] = ((1 - evaporacion) * feromonas[o][d]) + (evaporacion * (1 / hormiga.getRecorrido()));
-//                        feromonas[d][o] = ((1 - evaporacion) * feromonas[d][o]) + (evaporacion * (1 / hormiga.getRecorrido()));
-//                    } else {
-//                        feromonas[o][d] = ((1 - evaporacion) * feromonas[o][d]);
-//                        feromonas[d][o] = ((1 - evaporacion) * feromonas[d][o]);
-//                    }
-//                }
-//                d++;
-//            }
-//            o++;
-//        }
-//
-//        return feromonas;
-//    }
+            if (camino.enRecorrido(origen)) {
+                aux = i + 1;
+                // if (destino == camino.buscar(aux)) {
 
-//    public Hormiga crearHormiga(Random rand, int n) {
-//        NumerosAleatorios aleatorios = new NumerosAleatorios(1, n - 1);
-//        Hormiga hormiga = new Hormiga(n);
-//        // hormiga.getCamino().add(0);
-//        hormiga.insertarAlFinal(0);
-//
-//        for (int i = 1; i < n; i++) {
-//            int aux = aleatorios.generarNumeroAleatorio(rand);
-//            // hormiga.getCamino().add(i, aux);
-//            hormiga.InsertarAlFinal(i, aux);
-//        }
-//        return hormiga;
-//    }
+                if (camino.enRecorrido(destino)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
+
+    public double[][] ActualizarFeromonas(Hormiga hormiga, double[][] feromonas, int n, double evaporacion) {
+        double sumaFeromonas = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                sumaFeromonas = feromonas[i][j] + sumaFeromonas;
+            }
+        }
+
+        int o = 0;
+        while (o < n) {
+            int d = 1;
+            while (d < n) {
+                if (o != d) {
+                    // Revisar esta hormiga.getCamino(), originalmente era getRecorrido()
+                    if (Esta(o, d, hormiga.getCamino()) == true) {
+                        feromonas[o][d] = ((1 - evaporacion) * feromonas[o][d]) + (evaporacion * (1 / hormiga.getRecorrido()));
+                        feromonas[d][o] = ((1 - evaporacion) * feromonas[d][o]) + (evaporacion * (1 / hormiga.getRecorrido()));
+                    } else {
+                        feromonas[o][d] = ((1 - evaporacion) * feromonas[o][d]);
+                        feromonas[d][o] = ((1 - evaporacion) * feromonas[d][o]);
+                    }
+                }
+                d++;
+            }
+            o++;
+        }
+
+        return feromonas;
+    }
+
+    public Hormiga crearHormiga(Random rand, int n) {
+        NumerosAleatorios aleatorios = new NumerosAleatorios(1, n - 1);
+        Hormiga hormiga = new Hormiga(n);
+        // hormiga.getCamino().add(0);
+        hormiga.camino.insertarAlFinal(0);
+
+        for (int i = 1; i < n; i++) {
+            int aux = aleatorios.generarNumeroAleatorio(rand);
+            // hormiga.getCamino().add(i, aux);
+            hormiga.camino.insertarAlFinal(aux);
+        }
+        return hormiga;
+    }
 
 }

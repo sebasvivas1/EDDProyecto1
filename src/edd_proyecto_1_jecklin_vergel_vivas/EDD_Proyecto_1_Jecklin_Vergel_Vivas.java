@@ -9,7 +9,7 @@ public class EDD_Proyecto_1_Jecklin_Vergel_Vivas {
         ColoniaHormigas ch = new ColoniaHormigas();
         Random rand = new Random();
         
-        Hormiga xd = ch.cerebro(rand, 1, 0.5 , 1 , 2, 5);
+        Hormiga xd = ch.cerebro(rand, 1, 0.5 , 1 , 2, 20);
         System.out.println(xd.getFitness());
         
         for(int i=0; i< xd.getCamino().getTamanio();i++){

@@ -16,5 +16,8 @@ public class EDD_Proyecto_1_Jecklin_Vergel_Vivas {
         System.out.println("Nombre "+xd.getNombre());   
         System.out.println("Fitness: " + xd.getFitness());
         xd.getCamino().listar();
+        
+        Intro i = new Intro();
+        i.setVisible(true);
     }
 }

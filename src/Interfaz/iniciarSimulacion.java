@@ -6,6 +6,8 @@
 package Interfaz;
 
 import edd_proyecto_1_jecklin_vergel_vivas.ColoniaHormigas;
+import edd_proyecto_1_jecklin_vergel_vivas.Hormiga;
+import edd_proyecto_1_jecklin_vergel_vivas.ListaCiudades;
 import java.util.Random;
 import javax.swing.JOptionPane;
   
@@ -14,6 +16,8 @@ import javax.swing.JOptionPane;
  * @author Edward Vergel
  */
 public class iniciarSimulacion extends javax.swing.JFrame {
+    ListaCiudades ciudades;
+    Hormiga hormiga = new Hormiga("test");
     ColoniaHormigas ch = new ColoniaHormigas();
     Random rand = new Random();
     int cantidadHormigas;
@@ -25,7 +29,8 @@ public class iniciarSimulacion extends javax.swing.JFrame {
     /**
      * Creates new form iniciarSimulacion
      */
-    public iniciarSimulacion() {
+    public iniciarSimulacion(ListaCiudades ciudades) {
+        this.ciudades = ciudades;
         this.cantidadHormigas = 0;
         this.Alpha = 0;
         this.Betta = 0;
@@ -341,21 +346,29 @@ public class iniciarSimulacion extends javax.swing.JFrame {
             Rho = 0.5;
         }
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"ERROR: RHO INVALIDO");
+            JOptionPane.showMessageDialog(null,"ERROR: RHO INVALIDO", "ERROR", 0);
         }
     }//GEN-LAST:event_showRhoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Resultados r = new Resultados();
+
         if(Rho == 0){
-            JOptionPane.showMessageDialog(null, "ADVERTENCIA: INTRODUZCA VALOR A <Rho> Y PRESIONE <ENTER>");
+            JOptionPane.showMessageDialog(null, "ADVERTENCIA: INTRODUZCA VALOR A <Rho> Y PRESIONE <ENTER>", "ADVERTENCIA", 2);
         }
         if(Alpha != 0 && Betta != 0 && cantidadHormigas != 0 && Rho !=0 && iteraciones !=0){
-            ch.cerebro(rand, iteraciones, Rho, Alpha, Betta, cantidadHormigas);
-            r.setVisible(true);
-            dispose();
+            hormiga = ch.cerebro(rand, iteraciones, Rho, Alpha, Betta, cantidadHormigas);
+            Resultados result = new Resultados(iteraciones, Rho, Alpha, Betta, cantidadHormigas);
+            result.setVisible(true);
+            String recorrido = "";
+            for (int i = 0; i < hormiga.getCamino().getTamanio(); i++) {
+                recorrido += "--> "+ hormiga.getCamino().obtenerRecorridoIndex(i).getValor();
+            }
+            this.setVisible(false);
+            
+            JOptionPane.showMessageDialog(null, "RESULTADOS DE SIMULACION: \n"+ "Ciudad Origen: " +ciudades.getpFirst().getNombre()+"---- Ciudad Destino: "+ciudades.getpLast().getNombre()+"\n" +">> Nombre Hormiga: "+hormiga.getNombre()+"\n"+ ">> Recorrido: " +hormiga.getFitness()+"km\n" +">> Mejor iteracion: " +hormiga.getBestIteracion() +"\n" +">> Recorrido (ID Ciudad): "+ recorrido, "RESULTADOS", 1);
         }else {
             JOptionPane.showMessageDialog(null, "ERROR: FALTAN INICIALIZAR VALORES");
+            
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -389,7 +402,7 @@ public class iniciarSimulacion extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new iniciarSimulacion().setVisible(true);
+                //new iniciarSimulacion().setVisible(true);
             }
         });
     }

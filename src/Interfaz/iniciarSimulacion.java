@@ -321,7 +321,7 @@ public class iniciarSimulacion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ADVERTENCIA: INTRODUZCA VALOR A <Rho> Y PRESIONE <ENTER>");
         }
         if(Alpha != 0 && Betta != 0 && cantidadHormigas != 0 && Rho !=0 && iteraciones !=0){
-            ch.cerebro(rand, iteraciones, 0.0, Rho, Alpha, Betta);
+            ch.cerebro(rand, iteraciones, Rho, Alpha, Betta, cantidadHormigas);
             r.setVisible(true);
             dispose();
         }else {

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edd_proyecto_1_jecklin_vergel_vivas;
+package Interfaz;
 
 /**
  *
@@ -56,6 +56,11 @@ public class menuPrincipal extends javax.swing.JFrame {
         nuevaSimulacion.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         nuevaSimulacion.setForeground(new java.awt.Color(255, 255, 255));
         nuevaSimulacion.setText("Empezar Simulacion");
+        nuevaSimulacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevaSimulacionActionPerformed(evt);
+            }
+        });
         jPanel1.add(nuevaSimulacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 160, 40));
 
         guardarGrafo.setBackground(new java.awt.Color(51, 51, 51));
@@ -141,8 +146,13 @@ public class menuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
-       dispose();
+       System.exit(0);
     }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void nuevaSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaSimulacionActionPerformed
+        iniciarSimulacion is = new iniciarSimulacion();
+        is.setVisible(true);
+    }//GEN-LAST:event_nuevaSimulacionActionPerformed
 
     /**
      * @param args the command line arguments

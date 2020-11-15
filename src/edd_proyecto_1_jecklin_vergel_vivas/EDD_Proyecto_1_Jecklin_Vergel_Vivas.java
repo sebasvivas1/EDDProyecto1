@@ -9,9 +9,6 @@ public class EDD_Proyecto_1_Jecklin_Vergel_Vivas {
         Random rand = new Random();
         
         Hormiga xd = ch.cerebro(rand, 200,1.0, 8.0, 1, 1);
-        System.out.println(xd.getFitness());
-      
-        
-        
+        System.out.println(xd.getFitness());     
     }
 }

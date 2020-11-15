@@ -89,4 +89,10 @@ public class Funciones {
             arreglo[indiceContrario] = temporal;
         }
     }
+    
+    //Eliminar ciudad
+    /*public boolean eliminarCiudad(ListaCiudades ciudades, double[][] costos, int idCiudad){
+        ciudades.removerPorReferencia(idCiudad);
+    }*/
+    
 }

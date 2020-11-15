@@ -15,6 +15,7 @@ public class Hormiga {
     private double fitness;
     private int posicion;
     Recorrido camino = new Recorrido();
+    private int bestIteracion;
 
     public Hormiga(String n) {
         this.nombre = "h" + n;
@@ -52,6 +53,14 @@ public class Hormiga {
 
     public void setFitness(double fitness) {
         this.fitness = fitness;
+    }
+
+    public int getBestIteracion() {
+        return bestIteracion;
+    }
+
+    public void setBestIteracion(int bestIteracion) {
+        this.bestIteracion = bestIteracion;
     }
 
 }

@@ -22,12 +22,15 @@ public class NumerosAleatorios {
         return r;
     }
 
-    public void generarNumeroAleatorio(Random rand ) {
+    public void generarNumeroAleatorio(Random rand) {
         for (int i = 0; i < this.getValorFinal()-1 ; i++) {
             int numero = numeroAleatorio(rand);
-            if (this.getListaNumeros().esVacio() == true) {
+            if (this.getListaNumeros().esVacio() == true && numero != this.getValorFinal()) {
                 this.getListaNumeros().insertarAlFinal(numero);
-            }else{
+            }else if (numero == this.getValorFinal()) {
+                i--;
+            }
+            else{
                 if (this.getListaNumeros().existeNumero(numero, this.getListaNumeros()) == false) {
                     this.getListaNumeros().insertarAlFinal(numero);
                 }

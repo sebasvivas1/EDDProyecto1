@@ -239,23 +239,53 @@ public class iniciarSimulacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void defaultRhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defaultRhoActionPerformed
-        // TODO add your handling code here:
+        if (this.defaultRho.isSelected()){
+            Rho = 0.5;
+            this.showRho.setText("0.5");
+            this.showRho.setEnabled(false);
+        }else {
+        this.showRho.setEnabled(true);
+        }
     }//GEN-LAST:event_defaultRhoActionPerformed
 
     private void defaultIteracionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defaultIteracionesActionPerformed
-        // TODO add your handling code here:
+        if (this.defaultIteraciones.isSelected()){
+            iteraciones = 10;
+            this.showIteraciones.setText("10");
+            this.cantidadIteraciones.setEnabled(false);
+        }else {
+        this.cantidadIteraciones.setEnabled(true);
+        }
     }//GEN-LAST:event_defaultIteracionesActionPerformed
 
     private void defaultAlphaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defaultAlphaActionPerformed
-        // TODO add your handling code here:
+        if (this.defaultAlpha.isSelected()){
+            Alpha = 1;
+            this.showAlpha.setText("1");
+            this.cantidadAlpha.setEnabled(false);
+        }else {
+            this.cantidadAlpha.setEnabled(true);
+        }
     }//GEN-LAST:event_defaultAlphaActionPerformed
 
     private void HormigasDefaultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HormigasDefaultActionPerformed
-        // TODO add your handling code here:
+        if (this.HormigasDefault.isSelected()){
+            cantidadHormigas = 5;
+            this.showHormigas.setText("5");
+            this.CantidadHormigas.setEnabled(false);
+        }else {
+            this.CantidadHormigas.setEnabled(true);
+        }
     }//GEN-LAST:event_HormigasDefaultActionPerformed
 
     private void defaultBetta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defaultBetta1ActionPerformed
-        // TODO add your handling code here:
+        if (this.defaultBetta1.isSelected()){
+            Betta = 2;
+            this.showBetta.setText("2");
+            this.cantidadBetta.setEnabled(false);
+        }else{
+            this.cantidadBetta.setEnabled(true);
+        }
     }//GEN-LAST:event_defaultBetta1ActionPerformed
 
     private void showHormigasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showHormigasActionPerformed

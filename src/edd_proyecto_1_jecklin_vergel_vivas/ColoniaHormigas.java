@@ -126,7 +126,7 @@ public class ColoniaHormigas {
     }
 
     public int siguienteCiudad(ListaCiudades ciudades, double[][] probabilidadPorCamino, int n, Random rand, int origen) {
-        int destino = 1000;
+        int destino = 0;
         double menor = n;
         double sumaProbabilidadPorCamino = 0.0;
 
@@ -191,102 +191,74 @@ public class ColoniaHormigas {
         double[][] feromonas = InicializarFeromonas(n);
         double[][] probabilidad = probabilidadPorCamino(n, feromonas, visibilidad, alpha, betta);
 
-        //Matriz Probabilidad
-        System.out.println("Matriz Antes ");
-        for (int i = 0; i < probabilidad.length; i++) {
-            for (int j = 0; j < probabilidad[i].length; j++) {
-                System.out.print(probabilidad[i][j] + " ");
-            }
-            System.out.println();
-        }
         Hormiga Best = crearHormiga(rand, n);
         Best.setFitness(sumaCaminos(Best.camino, costo));
 
         feromonas = ActualizarFeromonas(Best, feromonas, n, evaporacion);
         probabilidad = probabilidadPorCamino(n, feromonas, visibilidad, alpha, betta);
 
-        while (cont <= cantidad) {
-            if (cont == 0) {
-                Hormiga nHormiga = new Hormiga(String.valueOf(cont + 1));
-                System.out.println(nHormiga.getNombre());
-                nHormiga.camino.insertarAlFinal(0);
-                for (int i = 1; i < n; i++) {
-                    int origen = nHormiga.camino.obtenerRecorridoIndex(i - 1).getValor();
-                    int siguiente = siguienteCiudad(ciudades, probabilidad, n, rand, origen);
-                    System.out.println("Siguiente CIudad: " + siguiente);
-                    if (siguiente == (n - 1)) {
-                        ciudades.obtenerCiudadIndex(siguiente).setVisitado(true);
-                        nHormiga.camino.insertarAlFinal(siguiente);
-                        i = n;
-                    } else {
-                        ciudades.obtenerCiudadIndex(siguiente).setVisitado(true);
-                        nHormiga.camino.insertarAlFinal(siguiente);
+        for (int i = 0; i < iteraciones; i++) {
+            while (cont <= cantidad) {
+                if (cont == 0) {
+                    Hormiga nHormiga = new Hormiga(String.valueOf(cont + 1));
+                    nHormiga.camino.insertarAlFinal(0);
+                    for (int j = 1; j < n; j++) {
+                        int origen = nHormiga.camino.obtenerRecorridoIndex(j - 1).getValor();
+                        int siguiente = siguienteCiudad(ciudades, probabilidad, n, rand, origen);
+                        if (siguiente == (n - 1)) {
+                            ciudades.obtenerCiudadIndex(siguiente).setVisitado(true);
+                            nHormiga.camino.insertarAlFinal(siguiente);
+                            j = n;
+                        } else {
+                            ciudades.obtenerCiudadIndex(siguiente).setVisitado(true);
+                            nHormiga.camino.insertarAlFinal(siguiente);
+                        }
                     }
-                }
-                nHormiga.camino.listar();
-                //Matriz Probabilidad
-                System.out.println("Matriz Despues ");
-                for (int i = 0; i < probabilidad.length; i++) {
-                    for (int j = 0; j < probabilidad[i].length; j++) {
-                        System.out.print(probabilidad[i][j] + " ");
+                    nHormiga.setFitness(sumaCaminos(nHormiga.camino, costo));
+                    if (nHormiga.getFitness() < Best.getFitness()) {
+                        Best = nHormiga;
+                        if (cont <= iteraciones) {
+                            Best.setBestIteracion(cont);
+                        }
                     }
-                    System.out.println();
-                }
-                nHormiga.setFitness(sumaCaminos(nHormiga.camino, costo));
-                System.out.println("Fitness nH " + nHormiga.getFitness());
-                System.out.println("Fitness Best " + Best.getFitness());
-                if (nHormiga.getFitness() < Best.getFitness()) {
-                    Best = nHormiga;
-                }
-                feromonas = ActualizarFeromonas(Best, feromonas, n, evaporacion);
-                probabilidad = probabilidadPorCamino(n, feromonas, visibilidad, alpha, betta);
-                for (int i = 0; i < ciudades.getTamanio(); i++) {
-                    ciudades.obtenerCiudadIndex(i).setVisitado(false);
-                }
-                cont++;
-            } else {
-                System.out.println("Ciudadesssssss: " + ciudades.getTamanio());
-                Hormiga nHormiga = new Hormiga(String.valueOf(cont + 1));
-                System.out.println(nHormiga.getNombre());
-                nHormiga.camino.insertarAlFinal(0);
-                for (int i = 1; i < n; i++) {
-                    int origen = nHormiga.camino.obtenerRecorridoIndex(i - 1).getValor();
-                    int siguiente = siguienteCiudad(ciudades, probabilidad, n, rand, origen);
-                    System.out.println("Siguiente CIudad: " + siguiente);
-                    if (siguiente == (n - 1)) {
-                        ciudades.obtenerCiudadIndex(siguiente).setVisitado(true);
-                        nHormiga.camino.insertarAlFinal(siguiente);
-                        i = n;
-                    } else {
-                        ciudades.obtenerCiudadIndex(siguiente).setVisitado(true);
-                        nHormiga.camino.insertarAlFinal(siguiente);
+                    feromonas = ActualizarFeromonas(Best, feromonas, n, evaporacion);
+                    probabilidad = probabilidadPorCamino(n, feromonas, visibilidad, alpha, betta);
+                    for (int k = 0; k < ciudades.getTamanio(); k++) {
+                        ciudades.obtenerCiudadIndex(k).setVisitado(false);
                     }
-                }
-                nHormiga.camino.listar();
-                //Matriz Probabilidad
-                System.out.println("Matriz Despues ");
-                for (int i = 0; i < probabilidad.length; i++) {
-                    for (int j = 0; j < probabilidad[i].length; j++) {
-                        System.out.print(probabilidad[i][j] + " ");
+                    cont++;
+                } else {
+                    Hormiga nHormiga = new Hormiga(String.valueOf(cont + 1));
+                    nHormiga.camino.insertarAlFinal(0);
+                    for (int l = 1; l < n; l++) {
+                        int origen = nHormiga.camino.obtenerRecorridoIndex(l - 1).getValor();
+                        int siguiente = siguienteCiudad(ciudades, probabilidad, n, rand, origen);
+                        if (siguiente == (n - 1)) {
+                            ciudades.obtenerCiudadIndex(siguiente).setVisitado(true);
+                            nHormiga.camino.insertarAlFinal(siguiente);
+                            l = n;
+                        } else {
+                            ciudades.obtenerCiudadIndex(siguiente).setVisitado(true);
+                            nHormiga.camino.insertarAlFinal(siguiente);
+                        }
                     }
-                    System.out.println();
+                    nHormiga.setFitness(sumaCaminos(nHormiga.camino, costo));
+                    if (nHormiga.getFitness() < Best.getFitness()) {
+                        Best = nHormiga;
+                        if (cont <= iteraciones) {
+                            Best.setBestIteracion(cont);
+                        }
+                    }
+                    feromonas = ActualizarFeromonas(Best, feromonas, n, evaporacion);
+                    probabilidad = probabilidadPorCamino(n, feromonas, visibilidad, alpha, betta);
+                    for (int m = 0; m < ciudades.getTamanio(); m++) {
+                        ciudades.obtenerCiudadIndex(m).setVisitado(false);
+                    }
+                    cont++;
                 }
-                nHormiga.setFitness(sumaCaminos(nHormiga.camino, costo));
-                System.out.println("Fitness nH " + nHormiga.getFitness());
-                System.out.println("Fitness Best " + Best.getFitness());
-                if (nHormiga.getFitness() < Best.getFitness()) {
-                    Best = nHormiga;
-                }
-                feromonas = ActualizarFeromonas(Best, feromonas, n, evaporacion);
-                probabilidad = probabilidadPorCamino(n, feromonas, visibilidad, alpha, betta);
-                for (int i = 0; i < ciudades.getTamanio(); i++) {
-                    ciudades.obtenerCiudadIndex(i).setVisitado(false);
-                }
-                cont++;
+
             }
-
         }
-
         return Best;
     }
 }

@@ -32,7 +32,7 @@ public class ListaCiudades {
     public Ciudad obtenerCiudadIndex(int index) {
         Ciudad pAux = pFirst;
         if (!esVacio()) {
-            if (index <= 19 || index >= 0) {
+            if (index >= 0 || index <= 19) {
                 while (pAux.getIndex() != index) {
                     pAux = pAux.getpNext();
                 }
@@ -43,22 +43,65 @@ public class ListaCiudades {
         return null;
     }
 
-//    public void eliminarIndice(int index){
-//        Ciudad pAnt = pFirst;
-//        Ciudad pAct = pFirst.getpNext();
-//        Ciudad pSig = pAct.getpNext();
-//        if (!esVacio()){
-//            while(pSig != pLast){
-//                if (pAux.getIndex() == index){
-//                    
-//                }
-//                pAux = pAux.getpNext();
-//                pSig = pSig.getpNext();
-//            }
-//        }else {
-//            JOptionPane.showMessageDialog(null, "ERROR: NO HAY CIUDADES INSERTADAS");
-//        }
-//    }
+    /**
+     * Busca si existe un valor en la lista.
+     *
+     * @param referencia valor a buscar.
+     * @return true si existe el valor en la lista.
+     */
+    public boolean buscar(int referencia) {
+        // Crea una copia de la lista.
+        Ciudad aux = pFirst;
+        // Bandera para indicar si el valor existe.
+        boolean encontrado = false;
+        // Recorre la lista hasta encontrar el elemento o hasta 
+        // llegar al final de la lista.
+        while (aux != null && encontrado != true) {
+            // Consulta si el valor del nodo es igual al de referencia.
+            if (referencia == aux.getIndex()) {
+                // Canbia el valor de la bandera.
+                encontrado = true;
+            } else {
+                // Avansa al siguiente. nodo.
+                aux = aux.getpNext();
+            }
+        }
+        // Retorna el resultado de la bandera.
+        return encontrado;
+    }
+
+    /**
+     * Elimina un nodo que se encuentre en la lista ubicado por un valor de
+     * referencia.
+     *
+     * @param referencia valor del nodo que se desea eliminar.
+     */
+    public void removerPorReferencia(int referencia) {
+        // Consulta si el valor de referencia existe en la lista.
+        if (buscar(referencia)) {
+            // Consulta si el nodo a eliminar es el pirmero
+            if (pFirst.getIndex()== referencia) {
+                // El primer nodo apunta al siguiente.
+                pFirst = pFirst.getpNext();
+            } else {
+                // Crea ua copia de la lista.
+                Ciudad aux = pFirst;
+                // Recorre la lista hasta llegar al nodo anterior 
+                // al de referencia.
+                while (aux.getpNext().getIndex()!= referencia) {
+                    aux = aux.getpNext();
+                }
+                // Guarda el nodo siguiente del nodo a eliminar.
+                Ciudad siguiente = aux.getpNext().getpNext();
+                // Enlaza el nodo anterior al de eliminar con el 
+                // sguiente despues de el.
+                aux.setpNext(siguiente);
+            }
+            // Disminuye el contador de tamaño de la lista.
+            tamanio--;
+        }
+    }
+
     public boolean esVacio() {
         return tamanio == 0;
     }

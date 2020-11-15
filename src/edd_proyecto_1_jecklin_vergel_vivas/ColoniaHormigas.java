@@ -112,6 +112,7 @@ public class ColoniaHormigas {
     }
 
     public Hormiga crearHormiga(Random rand, int n) {
+        n--;
         NumerosAleatorios aleatorios = new NumerosAleatorios(1, n);
         Hormiga hormiga = new Hormiga(String.valueOf(n));
         hormiga.getCamino().insertarAlFinal(0);
@@ -162,23 +163,29 @@ public class ColoniaHormigas {
         }
         return destino;
     }
-    
-     //Sumar caminos para la hormiga
-    public double sumaCaminos(Recorrido camino, double costos[][]){
+
+    //Sumar caminos para la hormiga
+    public double sumaCaminos(Recorrido camino, double costos[][]) {
         double suma = 0;
         int j = 1;
-        for (int i = 0; i < camino.getTamanio()-1; i++) {
-            int origen = camino.obtenerRecorridoIndex(i).getValor() ; 
-            int destino = camino.obtenerRecorridoIndex(j).getValor() ;
-            suma = (double)costos[origen][destino] + suma;
-            i++;
+        for (int i = 0; i < camino.getTamanio() - 1; i++) {
+            int origen = camino.obtenerRecorridoIndex(i).getValor();
+            int destino = camino.obtenerRecorridoIndex(j).getValor();
+            if (destino == 4) {
+                suma = (double) costos[origen][destino - 1] + suma;
+                j++;
+            } else {
+                suma = (double) costos[origen][destino] + suma;
+                j++;
+            }
+
         }
-        suma = (double)costos[(camino.getTamanio()-1)][0] + suma;
+        suma = (double) costos[(camino.getTamanio() - 1)][0] + suma;
 
         return suma;
     }
-    
-    public Hormiga cerebro(Random rand, int iteraciones, double p,  double evaporacion, int alpha, int betta){
+
+    public Hormiga cerebro(Random rand, int iteraciones, double p, double evaporacion, int alpha, int betta) {
         Funciones f = new Funciones();
         String[] list = f.cargarDatos();
         ListaCiudades ciudades = f.obtenerCiudades(list);
@@ -186,41 +193,38 @@ public class ColoniaHormigas {
         int n = ciudades.getTamanio();
         double[][] costo = f.obtenerCosto(list, n);
         ciudades.getpFirst().setVisitado(true);
-        int cont = 0; 
-        int bestIteracion =0;
-        
+        int cont = 0;
+        int bestIteracion = 0;
+
         double[][] visibilidad = InicializarVisibilidad(costo, n);
         double[][] feromonas = InicializarFeromonas(n);
         double[][] probabilidad = probabilidadPorCamino(n, feromonas, visibilidad, alpha, betta);
-        
+
         Hormiga Best = crearHormiga(rand, n);
         Best.setFitness(sumaCaminos(Best.camino, costo));
-        
-        feromonas = ActualizarFeromonas(Best, feromonas,n, evaporacion);
+
+        feromonas = ActualizarFeromonas(Best, feromonas, n, evaporacion);
         probabilidad = probabilidadPorCamino(n, feromonas, visibilidad, alpha, betta);
-        
-        while(cont < iteraciones)
-        {
-            Hormiga nHormiga = new Hormiga("H");         
+
+        while (cont < iteraciones) {
+            Hormiga nHormiga = new Hormiga("H");
             nHormiga.camino.insertarAlFinal(0);
-            for(int i=1;i<n;i++)
-            {
-                int origen = nHormiga.camino.obtenerRecorridoIndex(i-1).getValor();
+            for (int i = 1; i < n; i++) {
+                int origen = nHormiga.camino.obtenerRecorridoIndex(i - 1).getValor();
                 int siguiente = siguienteCiudad(ciudades, probabilidad, n, rand, origen);
                 ciudades.obtenerCiudadIndex(siguiente).setVisitado(true);
                 nHormiga.camino.insertarAlFinal(siguiente);
             }
             nHormiga.setFitness(sumaCaminos(nHormiga.camino, costo));
 
-            if(nHormiga.getFitness() < Best.getFitness())
-            {
+            if (nHormiga.getFitness() < Best.getFitness()) {
                 Best = nHormiga;
                 bestIteracion = cont;
             }
-            
+
             feromonas = ActualizarFeromonas(Best, feromonas, n, evaporacion);
             probabilidad = probabilidadPorCamino(n, feromonas, visibilidad, alpha, betta);
-            cont ++;
+            cont++;
             System.out.println(bestIteracion);
         }
         return Best;

@@ -10,14 +10,16 @@ package Interfaz;
  * @author Edward Vergel
  */
 public class Resultados extends javax.swing.JFrame {
-
+    menuPrincipal mp = new menuPrincipal();
     /**
      * Creates new form Resultados
      */
-    public Resultados() {
+    public Resultados(int iteraciones, double Rho, int Alpha, int Betta, int cantidadHormigas) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.resultados.setText(">> Hormigas en simulacion: "+cantidadHormigas + "\n" + ">> Numero de Iteraciones: "+ iteraciones + "\n" +">> Alpha: "+ Alpha+"\n"+">> Betta: "+Betta);
+        //this.resultados.setText("---------------------------------------");
     }
 
     /**
@@ -32,9 +34,13 @@ public class Resultados extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        resultados = new javax.swing.JTextArea();
+        exit = new javax.swing.JButton();
+        continuar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -45,16 +51,60 @@ public class Resultados extends javax.swing.JFrame {
         jLabel1.setText("RESULTADOS");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        resultados.setEditable(false);
+        resultados.setColumns(20);
+        resultados.setRows(5);
+        resultados.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                resultadosCaretUpdate(evt);
+            }
+        });
+        jScrollPane1.setViewportView(resultados);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 460, 200));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 460, 200));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 300));
+        exit.setBackground(new java.awt.Color(0, 0, 0));
+        exit.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        exit.setForeground(new java.awt.Color(255, 255, 255));
+        exit.setText("SALIR");
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+        jPanel1.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 120, 30));
+
+        continuar.setBackground(new java.awt.Color(0, 0, 0));
+        continuar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        continuar.setForeground(new java.awt.Color(255, 255, 255));
+        continuar.setText("CONTINUAR");
+        continuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                continuarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(continuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 120, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void resultadosCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_resultadosCaretUpdate
+        
+    }//GEN-LAST:event_resultadosCaretUpdate
+
+    private void continuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuarActionPerformed
+
+            this.setVisible(false);
+            mp.setVisible(true);
+            
+        
+    }//GEN-LAST:event_continuarActionPerformed
+
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,15 +136,17 @@ public class Resultados extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Resultados().setVisible(true);
+                //new Resultados().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton continuar;
+    private javax.swing.JButton exit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea resultados;
     // End of variables declaration//GEN-END:variables
 }

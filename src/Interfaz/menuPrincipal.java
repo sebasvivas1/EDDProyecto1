@@ -5,19 +5,34 @@
  */
 package Interfaz;
 
+import edd_proyecto_1_jecklin_vergel_vivas.Funciones;
+import edd_proyecto_1_jecklin_vergel_vivas.ListaCiudades;
+
 /**
  *
  * @author Edward Vergel
  */
 public class menuPrincipal extends javax.swing.JFrame {
-
-    /**
-     * Creates new form menuPrincipal
-     */
+    Funciones f = new Funciones();
+    ListaCiudades ciudades;
+    
+    
+    
+    
     public menuPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.CiudadesEnSimulacion.setEditable(false);
+        String[] list = f.cargarDatos();
+        ciudades = f.obtenerCiudades(list);
+        int n = ciudades.getTamanio();
+        String ciudad = "";
+        
+        for (int i = 0; i < n; i++) {
+            ciudad += i+"."+ciudades.obtenerCiudadIndex(i).getNombre() + "\n";
+        }
+        
+        this.CiudadesEnSimulacion.setText(ciudad);
     }
 
     /**
@@ -31,18 +46,18 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         nuevaSimulacion = new javax.swing.JButton();
-        guardarGrafo = new javax.swing.JButton();
         cargarGrafo = new javax.swing.JButton();
         insertarCiudad = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         exitButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         CiudadesEnSimulacion = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -63,12 +78,6 @@ public class menuPrincipal extends javax.swing.JFrame {
         });
         jPanel1.add(nuevaSimulacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 160, 40));
 
-        guardarGrafo.setBackground(new java.awt.Color(51, 51, 51));
-        guardarGrafo.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        guardarGrafo.setForeground(new java.awt.Color(255, 255, 255));
-        guardarGrafo.setText("Guardar");
-        jPanel1.add(guardarGrafo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 160, 30));
-
         cargarGrafo.setBackground(new java.awt.Color(51, 51, 51));
         cargarGrafo.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         cargarGrafo.setForeground(new java.awt.Color(255, 255, 255));
@@ -87,11 +96,6 @@ public class menuPrincipal extends javax.swing.JFrame {
         jButton1.setText("Eliminar Ciudad");
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 160, 40));
 
-        jLabel2.setFont(new java.awt.Font("Eras Demi ITC", 2, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Datos:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, -1, -1));
-
         jLabel3.setFont(new java.awt.Font("Eras Demi ITC", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Ciudades en Simulacion");
@@ -99,21 +103,32 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
+        jLabel2.setFont(new java.awt.Font("Eras Demi ITC", 2, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Datos:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(8, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(130, 130, 130))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 350, 80));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, 180, 80));
 
+        exitButton.setBackground(new java.awt.Color(255, 255, 255));
         exitButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        exitButton.setForeground(new java.awt.Color(255, 255, 255));
+        exitButton.setForeground(new java.awt.Color(0, 0, 0));
         exitButton.setText("x");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,10 +151,17 @@ public class menuPrincipal extends javax.swing.JFrame {
         CiudadesEnSimulacion.setEditable(false);
         CiudadesEnSimulacion.setBackground(new java.awt.Color(102, 102, 102));
         CiudadesEnSimulacion.setColumns(20);
+        CiudadesEnSimulacion.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        CiudadesEnSimulacion.setForeground(new java.awt.Color(255, 255, 255));
         CiudadesEnSimulacion.setRows(5);
         jScrollPane2.setViewportView(CiudadesEnSimulacion);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 350, 160));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("*Los datos se guardan automaticamente*");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 350));
 
@@ -151,8 +173,9 @@ public class menuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void nuevaSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaSimulacionActionPerformed
-        iniciarSimulacion is = new iniciarSimulacion();
+        iniciarSimulacion is = new iniciarSimulacion(ciudades);
         is.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_nuevaSimulacionActionPerformed
 
     /**
@@ -194,12 +217,12 @@ public class menuPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextArea CiudadesEnSimulacion;
     private javax.swing.JButton cargarGrafo;
     private javax.swing.JButton exitButton;
-    private javax.swing.JButton guardarGrafo;
     private javax.swing.JButton insertarCiudad;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

@@ -1,5 +1,5 @@
 
-package edd_proyecto_1_jecklin_vergel_vivas;
+package edd_proyecto_1_Fernandez_vergel_vivas;
 
 import java.util.Random;
 

@@ -5,8 +5,8 @@
  */
 package Interfaz;
 
-import edd_proyecto_1_jecklin_vergel_vivas.Funciones;
-import edd_proyecto_1_jecklin_vergel_vivas.ListaCiudades;
+import edd_proyecto_1_Fernandez_vergel_vivas.Funciones;
+import edd_proyecto_1_Fernandez_vergel_vivas.ListaCiudades;
 import javax.swing.JOptionPane;
 
 /**
@@ -201,8 +201,9 @@ public class menuPrincipal extends javax.swing.JFrame {
         String ciudad = "";
         String ciudadEliminada = JOptionPane.showInputDialog(null, "Ingrese el ID de la ciudad a eliminar: ");
         if (ciudadEliminada == null) {
-            
+
         } else {
+            if(ciudades.getTamanio()>4){
             int id = Integer.parseInt(ciudadEliminada);
             if (id >= ciudades.getTamanio() || id < 0) {
                 JOptionPane.showMessageDialog(null, "ERROR: CIUDAD INEXISTENTE", "ERROR", 0);
@@ -214,6 +215,9 @@ public class menuPrincipal extends javax.swing.JFrame {
                     ciudad += i + "." + ciudades.obtenerCiudadIndex(i).getNombre() + "\n";
                 }
                 this.CiudadesEnSimulacion.setText(ciudad);
+            }
+            }else {
+                JOptionPane.showMessageDialog(null, "ERROR: VALOR MINIMO DE CIUDADES ALCANZADO");
             }
         }
     }//GEN-LAST:event_eliminarCiudadActionPerformed

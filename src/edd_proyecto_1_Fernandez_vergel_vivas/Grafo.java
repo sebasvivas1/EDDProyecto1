@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edd_proyecto_1_jecklin_vergel_vivas;
+package edd_proyecto_1_Fernandez_vergel_vivas;
 
 import javax.swing.JOptionPane;
 

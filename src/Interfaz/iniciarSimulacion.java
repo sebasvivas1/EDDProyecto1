@@ -71,18 +71,17 @@ public class iniciarSimulacion extends javax.swing.JFrame {
         showAlpha = new javax.swing.JTextField();
         showBetta = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.setFocusable(false);
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         defaultRho.setBackground(new java.awt.Color(255, 255, 255));
-        defaultRho.setForeground(new java.awt.Color(0, 0, 0));
         defaultRho.setText("Rho Default");
         defaultRho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,12 +91,10 @@ public class iniciarSimulacion extends javax.swing.JFrame {
         jPanel1.add(defaultRho, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 110, -1));
 
         jLabel1.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Rho:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, 30));
 
         jLabel2.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Cantidad de Hormigas:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 160, 30));
 
@@ -113,7 +110,6 @@ public class iniciarSimulacion extends javax.swing.JFrame {
         jPanel1.add(CantidadHormigas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
 
         defaultIteraciones.setBackground(new java.awt.Color(255, 255, 255));
-        defaultIteraciones.setForeground(new java.awt.Color(0, 0, 0));
         defaultIteraciones.setText("Valor Default");
         defaultIteraciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +119,6 @@ public class iniciarSimulacion extends javax.swing.JFrame {
         jPanel1.add(defaultIteraciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 140, -1));
 
         jLabel3.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Cantidad de Iteraciones:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, 30));
 
@@ -139,7 +134,6 @@ public class iniciarSimulacion extends javax.swing.JFrame {
         jPanel1.add(cantidadIteraciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
 
         defaultAlpha.setBackground(new java.awt.Color(255, 255, 255));
-        defaultAlpha.setForeground(new java.awt.Color(0, 0, 0));
         defaultAlpha.setText("Alpha Default");
         defaultAlpha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,7 +143,6 @@ public class iniciarSimulacion extends javax.swing.JFrame {
         jPanel1.add(defaultAlpha, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 110, -1));
 
         jLabel4.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Alpha");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, 30));
 
@@ -165,7 +158,6 @@ public class iniciarSimulacion extends javax.swing.JFrame {
         jPanel1.add(cantidadAlpha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         HormigasDefault.setBackground(new java.awt.Color(255, 255, 255));
-        HormigasDefault.setForeground(new java.awt.Color(0, 0, 0));
         HormigasDefault.setText("Hormigas Default");
         HormigasDefault.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,7 +167,6 @@ public class iniciarSimulacion extends javax.swing.JFrame {
         jPanel1.add(HormigasDefault, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 140, -1));
 
         jLabel5.setFont(new java.awt.Font("Eras Demi ITC", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Betta:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, 30));
 
@@ -191,7 +182,6 @@ public class iniciarSimulacion extends javax.swing.JFrame {
         jPanel1.add(cantidadBetta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
         defaultBetta1.setBackground(new java.awt.Color(255, 255, 255));
-        defaultBetta1.setForeground(new java.awt.Color(0, 0, 0));
         defaultBetta1.setText("Betta Default");
         defaultBetta1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,7 +190,6 @@ public class iniciarSimulacion extends javax.swing.JFrame {
         });
         jPanel1.add(defaultBetta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 110, -1));
 
-        showRho.setBackground(new java.awt.Color(255, 255, 255));
         showRho.setToolTipText("Introduzca Rho");
         showRho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,13 +219,21 @@ public class iniciarSimulacion extends javax.swing.JFrame {
         showBetta.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.add(showBetta, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 60, -1));
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("COMENZAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 240, 130, 60));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 150, 60));
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Todos los valores deben ser mayor a 0");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 310));
 
@@ -423,6 +420,7 @@ public class iniciarSimulacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField showAlpha;
     private javax.swing.JTextField showBetta;

@@ -7,32 +7,36 @@ package Interfaz;
 
 import edd_proyecto_1_jecklin_vergel_vivas.Funciones;
 import edd_proyecto_1_jecklin_vergel_vivas.ListaCiudades;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Edward Vergel
  */
 public class menuPrincipal extends javax.swing.JFrame {
-    Funciones f = new Funciones();
+
+    Funciones f;
     ListaCiudades ciudades;
-    
-    
-    
-    
+    double[][] mcosto;
+
     public menuPrincipal() {
         initComponents();
+        f = new Funciones();
         this.setLocationRelativeTo(null);
         this.CiudadesEnSimulacion.setEditable(false);
         String[] list = f.cargarDatos();
         ciudades = f.obtenerCiudades(list);
+        f.invertirArreglo(list);
         int n = ciudades.getTamanio();
+        mcosto = f.obtenerCosto(list, n);
         String ciudad = "";
-        
+
         for (int i = 0; i < n; i++) {
-            ciudad += i+"."+ciudades.obtenerCiudadIndex(i).getNombre() + "\n";
+            ciudad += i + "." + ciudades.obtenerCiudadIndex(i).getNombre() + "\n";
         }
-        
+
         this.CiudadesEnSimulacion.setText(ciudad);
+
     }
 
     /**
@@ -48,7 +52,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         nuevaSimulacion = new javax.swing.JButton();
         cargarGrafo = new javax.swing.JButton();
         insertarCiudad = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        eliminarCiudad = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -82,19 +86,34 @@ public class menuPrincipal extends javax.swing.JFrame {
         cargarGrafo.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         cargarGrafo.setForeground(new java.awt.Color(255, 255, 255));
         cargarGrafo.setText("Cargar");
+        cargarGrafo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarGrafoActionPerformed(evt);
+            }
+        });
         jPanel1.add(cargarGrafo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, 160, 30));
 
         insertarCiudad.setBackground(new java.awt.Color(51, 51, 51));
         insertarCiudad.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         insertarCiudad.setForeground(new java.awt.Color(255, 255, 255));
         insertarCiudad.setText("Insertar Ciudad");
+        insertarCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertarCiudadActionPerformed(evt);
+            }
+        });
         jPanel1.add(insertarCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 160, 40));
 
-        jButton1.setBackground(new java.awt.Color(51, 51, 51));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Eliminar Ciudad");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 160, 40));
+        eliminarCiudad.setBackground(new java.awt.Color(51, 51, 51));
+        eliminarCiudad.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        eliminarCiudad.setForeground(new java.awt.Color(255, 255, 255));
+        eliminarCiudad.setText("Eliminar Ciudad");
+        eliminarCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarCiudadActionPerformed(evt);
+            }
+        });
+        jPanel1.add(eliminarCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 160, 40));
 
         jLabel3.setFont(new java.awt.Font("Eras Demi ITC", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -169,7 +188,7 @@ public class menuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void nuevaSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaSimulacionActionPerformed
@@ -177,6 +196,46 @@ public class menuPrincipal extends javax.swing.JFrame {
         is.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_nuevaSimulacionActionPerformed
+
+    private void eliminarCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarCiudadActionPerformed
+        String ciudad = "";
+        String ciudadEliminada = JOptionPane.showInputDialog(null, "Ingrese el ID de la ciudad a eliminar: ");
+        if (ciudadEliminada == null) {
+            
+        } else {
+            int id = Integer.parseInt(ciudadEliminada);
+            if (id >= ciudades.getTamanio() || id < 0) {
+                JOptionPane.showMessageDialog(null, "ERROR: CIUDAD INEXISTENTE", "ERROR", 0);
+            } else {
+                double[][] ciudadEl = f.eliminarCiudad(ciudades, mcosto, id, id);
+                f.subirDatos(ciudades, ciudadEl);
+                JOptionPane.showMessageDialog(null, "CIUDAD ELIMINADA CON EXITO");
+                for (int i = 0; i < ciudades.getTamanio(); i++) {
+                    ciudad += i + "." + ciudades.obtenerCiudadIndex(i).getNombre() + "\n";
+                }
+                this.CiudadesEnSimulacion.setText(ciudad);
+            }
+        }
+    }//GEN-LAST:event_eliminarCiudadActionPerformed
+
+    private void cargarGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarGrafoActionPerformed
+        JOptionPane.showMessageDialog(null, "LOS DATOS YA ESTAN CARGADOS", "ADVERTENCIA", 1);
+    }//GEN-LAST:event_cargarGrafoActionPerformed
+
+    private void insertarCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertarCiudadActionPerformed
+         String ciudad = "";
+        String ciudadEliminada = JOptionPane.showInputDialog(null, "Ingrese nombre de la ciudad a agregar: ");
+        if (ciudadEliminada == null) {
+            
+        } else {
+            
+                for (int i = 0; i < ciudades.getTamanio(); i++) {
+                    ciudad += i + "." + ciudades.obtenerCiudadIndex(i).getNombre() + "\n";
+                }
+                this.CiudadesEnSimulacion.setText(ciudad);
+            }
+           
+    }//GEN-LAST:event_insertarCiudadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,9 +275,9 @@ public class menuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea CiudadesEnSimulacion;
     private javax.swing.JButton cargarGrafo;
+    private javax.swing.JButton eliminarCiudad;
     private javax.swing.JButton exitButton;
     private javax.swing.JButton insertarCiudad;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

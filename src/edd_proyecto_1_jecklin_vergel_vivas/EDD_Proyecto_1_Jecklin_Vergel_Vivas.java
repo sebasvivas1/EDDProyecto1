@@ -7,14 +7,6 @@ import java.util.Random;
 public class EDD_Proyecto_1_Jecklin_Vergel_Vivas {
 
     public static void main(String[] args) {
-        ColoniaHormigas colonia = new ColoniaHormigas();
-        Random rand = new Random();
-
-        Hormiga xd = colonia.cerebro(rand, 200, 0.5, 1, 2, 20);
-        System.out.println("Mejor iteracion: " + xd.getBestIteracion());
-        System.out.println("Nombre "+xd.getNombre());   
-        System.out.println("Fitness: " + xd.getFitness());
-        xd.getCamino().listar();
         
         Intro i = new Intro();
         i.setVisible(true);

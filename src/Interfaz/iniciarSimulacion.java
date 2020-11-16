@@ -5,9 +5,9 @@
  */
 package Interfaz;
 
-import edd_proyecto_1_jecklin_vergel_vivas.ColoniaHormigas;
-import edd_proyecto_1_jecklin_vergel_vivas.Hormiga;
-import edd_proyecto_1_jecklin_vergel_vivas.ListaCiudades;
+import edd_proyecto_1_Fernandez_vergel_vivas.ColoniaHormigas;
+import edd_proyecto_1_Fernandez_vergel_vivas.Hormiga;
+import edd_proyecto_1_Fernandez_vergel_vivas.ListaCiudades;
 import java.util.Random;
 import javax.swing.JOptionPane;
   

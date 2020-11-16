@@ -95,7 +95,8 @@ public class Funciones {
     public double[][] eliminarCiudad(ListaCiudades ciudades, double[][] costos, int nFila, int nColumna) {
         int ren = nFila;
         int colRemove = nColumna;
-        ciudades.removerPorReferencia(0);
+
+        ciudades.removerPorReferencia(nFila);
         Ciudad temp = ciudades.getpFirst();
         for (int i = 0; i < ciudades.getTamanio(); i++) {
             temp.setIndex(i);
@@ -103,13 +104,6 @@ public class Funciones {
         }
         return this.removeCol(this.removerow(costos, ren), colRemove);
 
-    }
-
-    //Agregar ciudad
-    public double[][] agregarCiudad(ListaCiudades ciudades, double[][] costos, int nFila, int nColumna) {
-        
-        
-        return null;
     }
 
     //Eliminar fila matriz
@@ -130,8 +124,8 @@ public class Funciones {
         }
         return mat2;
     }
-    //Eliminar columna matriz
 
+    //Eliminar columna matriz
     public double[][] removeCol(double[][] array, int colRemove) {
         int row = array.length;
         int col = array[0].length - 1;

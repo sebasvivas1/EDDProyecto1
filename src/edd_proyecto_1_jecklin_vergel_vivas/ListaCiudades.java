@@ -43,12 +43,6 @@ public class ListaCiudades {
         return null;
     }
 
-    /**
-     * Busca si existe un valor en la lista.
-     *
-     * @param referencia valor a buscar.
-     * @return true si existe el valor en la lista.
-     */
     public boolean buscar(int referencia) {
         // Crea una copia de la lista.
         Ciudad aux = pFirst;
@@ -70,12 +64,6 @@ public class ListaCiudades {
         return encontrado;
     }
 
-    /**
-     * Elimina un nodo que se encuentre en la lista ubicado por un valor de
-     * referencia.
-     *
-     * @param referencia valor del nodo que se desea eliminar.
-     */
     public void removerPorReferencia(int referencia) {
         // Consulta si el valor de referencia existe en la lista.
         if (buscar(referencia)) {
@@ -100,6 +88,17 @@ public class ListaCiudades {
             // Disminuye el contador de tamaño de la lista.
             tamanio--;
         }
+    }
+    
+    public void agregarAlInicio(int index, String nombre){
+        Ciudad nuevo = new Ciudad(nombre, index);
+        if (esVacia()) {
+            pFirst = nuevo;
+        } else{
+            nuevo.setpNext(pFirst);
+            pFirst = nuevo;
+        }
+        tamanio++;
     }
 
     public boolean esVacio() {
@@ -150,6 +149,51 @@ public class ListaCiudades {
                 // Incrementa el contador de la posión.
                 i++;
             }
+        }
+    }
+    
+    public void insertarPorPosicion(int posicion, int index, String nombre){
+        // Verifica si la posición ingresada se encuentre en el rango
+        // >= 0 y <= que el numero de elementos del la lista.
+        if(posicion>=0 && posicion<=tamanio){
+            Ciudad nuevo = new Ciudad(nombre,index);
+            nuevo.setIndex(index);
+            // Consulta si el nuevo nodo a ingresar va al Pfirst de la lista.
+            if(posicion == 0){
+                // Inserta el nuevo nodo al Pfirst de la lista.
+                nuevo.setpNext(pFirst);
+                pFirst = nuevo;
+            }
+            else{
+                // Si el nodo a inserta va al final de la lista.
+                if(posicion == tamanio){
+                    Ciudad aux = pFirst;
+                    // Recorre la lista hasta llegar al ultimo nodo.
+                    while(aux.getpNext()!= null){
+                        aux = aux.getpNext();
+                    }
+                    // Inserta el nuevo nodo despues de del ultimo.
+                    aux.setpNext(nuevo);              
+                }
+                else{
+                    // Si el nodo a insertar va en el medio de la lista.
+                    Ciudad aux = pFirst;
+                    // Recorre la lista hasta llegar al nodo anterior
+                    // a la posicion en la cual se insertara el nuevo nodo.
+                    for (int i = 0; i < (posicion-1); i++) {
+                        aux = aux.getpNext();
+                    }
+                    // Guarda el nodo siguiente al nodo en la posición
+                    // en la cual va a insertar el nevo nodo.
+                    Ciudad siguiente = aux.getpNext();
+                    // Inserta el nuevo nodo en la posición indicada.
+                    aux.setpNext(nuevo);
+                    // Une el nuevo nodo con el resto de la lista.
+                    nuevo.setpNext(siguiente);
+                }
+            }
+            // Incrementa el contador de tamaño de la lista.
+            tamanio++;
         }
     }
 }
